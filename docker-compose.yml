@@ -10,13 +10,17 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-      #UPLOADS_INI_URL: ${UPLOADS_INI_URL}
-      #WP_CONFIG_PHP_URL: ${WP_CONFIG_PHP_URL}
-      #HTACCESS_URL: ${HTACCESS_URL}
-      #INDEX_PHP_URL: ${INDEX_PHP_URL}
-      #PHP_INI_URL: ${PHP_INI_URL}
+      # UPLOADS_INI_URL: ${UPLOADS_INI_URL}
+      # WP_CONFIG_PHP_URL: ${WP_CONFIG_PHP_URL}
+      # HTACCESS_URL: ${HTACCESS_URL}
+      # INDEX_PHP_URL: ${INDEX_PHP_URL}
+      # PHP_INI_URL: ${PHP_INI_URL}
     depends_on:
       - db
+    volumes:
+      - wordpress_data:/var/www/html
+      - php_conf:/usr/local/etc/php/conf.d
+      - php_ini:/usr/local/etc/php
 
   db:
     image: mysql:5.7
@@ -32,3 +36,6 @@ services:
 
 volumes:
   db_data:
+  wordpress_data:
+  php_conf:
+  php_ini:
